@@ -1,0 +1,14 @@
+name: java-lineman
+version: 0.0.1
+inherits: mies/java7-oracle@0.0.1
+type: service
+platform: ubuntu@12.04
+description: wercker box for java and lineman development
+keywords:
+  - java
+  - maven
+  - lineman
+script: |
+  sudo apt-get update -y
+  sudo apt-get install npm -y
+  sudo npm install -g lineman
