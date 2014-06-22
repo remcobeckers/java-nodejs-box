@@ -37,7 +37,7 @@ script: |-
   type mvn || { echo "I expected maven to be available. Aborting."; exit 1; }
   
   # Install npm modules
-  sudo npm install -g lineman bower
+  npm install -g lineman bower
 
   type lineman || { echo "I expected lineman to be available. Aborting."; exit 1; }
   type bower || { echo "I expected bower to be available. Aborting."; exit 1; }
