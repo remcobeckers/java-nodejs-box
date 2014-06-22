@@ -22,7 +22,7 @@ script: |-
   echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
   echo debconf shared/accepted-oracle-license-v1-1 seen true |  sudo debconf-set-selections
   sudo apt-get install oracle-java7-installer -qq
-  sudo apt-get install npm -y
+  curl https://npmjs.org/install.sh | sudo bash
   sudo npm install -g lineman
 
   # Install sbt
