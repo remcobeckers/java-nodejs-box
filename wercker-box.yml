@@ -1,7 +1,7 @@
-name: java7-oracle-lineman
+name: lineman-java7
 version: 0.0.5
 description: Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Comes with maven, ant and sbt and nodejs build tools like lineman
-inherits: mies/java7-oracle@0.0.1
+inherits: kobim/nodejs-java7@0.0.6
 keywords:
   - java
   - ant
@@ -11,9 +11,7 @@ keywords:
   - lineman
 type: main
 script: |-
-  sudo apt-get update
-  sudo apt-get install -y npm
-  sudo ln -sf /usr/bin/nodejs /usr/local/bin/node
+  sudo apt-get install -y maven
   sudo npm install -g lineman bower
 
   type npm || { echo "I expected npm to be available. Aborting."; exit 1; }
