@@ -1,6 +1,6 @@
 name: rembo-java7
 version: 0.0.7
-description: Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Comes with maven, ant and sbt and nodejs build tools like lineman
+description: Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Comes with SBT and NPM
 inherits: kobim/nodejs-java7@0.0.6
 keywords:
   - java
@@ -32,4 +32,10 @@ script: |-
   sudo npm install -g bower
   sudo npm install -g gulp
 
+  # Make npm usable for normal users ?!
+  sudo chown -R `whoami` ~/.npm
+
   type bower || { echo "I expected bower to be available. Aborting."; exit 1; }
+
+  # Install SASS
+  sudo gem install sass
