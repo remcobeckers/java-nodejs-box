@@ -1,5 +1,5 @@
 name: rembo-java7
-version: 0.0.7
+version: 0.0.8
 description: Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Comes with SBT and NPM
 inherits: kobim/nodejs-java7@0.0.6
 keywords:
