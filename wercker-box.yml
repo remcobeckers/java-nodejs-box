@@ -1,14 +1,16 @@
-name: lineman-java7
+name: rembo-java7
 version: 0.0.7
 description: Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Comes with maven, ant and sbt and nodejs build tools like lineman
 inherits: kobim/nodejs-java7@0.0.6
 keywords:
   - java
-  - ant
   - sbt
-  - maven
   - oracle
-  - lineman
+packages:
+  - Java@7
+  - sbt@0.13.6
+  - Bower
+  - Gulp
 type: main
 env:
   SBT_OPTS: -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M
@@ -18,7 +20,7 @@ script: |-
   sudo apt-get install python-software-properties curl wget -y
 
   # Install sbt
-  wget http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch//0.12.3/sbt-launch.jar
+  wget http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch//0.13.6/sbt-launch.jar
   printf 'java -Dsbt.ivy.home=${IVY_CACHE_DIR} -Xmx512M ${SBT_OPTS} -jar `dirname $0`/sbt-launch.jar "$@"' > sbt
   sudo chmod +x ./sbt
   sudo mv sbt /usr/share/sbt
@@ -26,18 +28,8 @@ script: |-
   sudo ln -s /usr/share/sbt /usr/bin/sbt
   sudo ln -s /usr/share/sbt-launch.jar /usr/bin/sbt-launch.jar
 
-  # Install maven
-  sudo apt-get install maven
-
-  # Install ant
-  sudo apt-get install ant ant-contrib ivy ivy-doc -y -qq
-
-  # We should have ant and ivy available
-  type ant || { echo "I expected ant to be available. Aborting."; exit 1; }
-  type mvn || { echo "I expected maven to be available. Aborting."; exit 1; }
-
   # Install npm modules
-  sudo npm install -g lineman bower
+  sudo npm install -g bower
+  sudo npm install -g gulp
 
-  type lineman || { echo "I expected lineman to be available. Aborting."; exit 1; }
   type bower || { echo "I expected bower to be available. Aborting."; exit 1; }
