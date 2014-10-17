@@ -1,9 +1,12 @@
 name: rembo-java7
-version: 0.0.8
+version: 0.0.9
 description: Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Comes with SBT and NPM
-inherits: kobim/nodejs-java7@0.0.6
+inherits: wercker/ubuntu12.04-nodejs0.10@1.5.0
+platform: ubuntu@12.04
 keywords:
   - java
+  - nodejs
+  - npm
   - sbt
   - oracle
 packages:
@@ -18,6 +21,18 @@ env:
 script: |-
   sudo apt-get update
   sudo apt-get install python-software-properties curl wget -y
+  sudo apt-get install git-core curl openssl libssl-dev
+
+  # Install npm
+  curl https://www.npmjs.org/install.sh | sudo sh
+
+  # Install Java7
+  sudo apt-get install python-software-properties wget -y
+  sudo add-apt-repository ppa:webupd8team/java -y
+  sudo apt-get update
+  echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  echo debconf shared/accepted-oracle-license-v1-1 seen true |  sudo debconf-set-selections
+  sudo apt-get install oracle-java7-installer -qq
 
   # Install sbt
   wget http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch//0.13.6/sbt-launch.jar
