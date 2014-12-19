@@ -28,7 +28,7 @@ script: |-
   sudo apt-get install git-core curl openssl libssl-dev
 
   # Install npm
-  curl https://www.npmjs.org/install.sh | sudo sh
+  curl https://www.npmjs.com/install.sh | sudo sh
 
   # Install Java7
   sudo apt-get install python-software-properties wget -y
