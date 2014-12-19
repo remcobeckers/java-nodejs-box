@@ -1,14 +1,18 @@
 name: rembo-java7
-version: 0.0.9
-description: Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Comes with SBT and NPM
-inherits: wercker/ubuntu12.04-nodejs0.10@1.5.0
+version: 0.0.10
+description: |
+  Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Provides support for
+  running and testing Scala + Angular applications including. Includes Mailcatcher for mail sending
+  and support for Protractor end-2-end tests.
+inherits: wercker/ubuntu12.04-nodejs0.10@1.6.0
 platform: ubuntu@12.04
 keywords:
   - java
   - nodejs
   - npm
   - sbt
-  - oracle
+  - Protractor
+  - Mailcatcher
 packages:
   - Java@7
   - sbt@0.13.6
@@ -46,11 +50,19 @@ script: |-
   # Install npm modules
   sudo npm install -g bower
   sudo npm install -g gulp
+  sudo npm install -g protractor
 
   # Make npm usable for normal users ?!
   sudo chown -R `whoami` ~/.npm
+
+  # Load Protractor webdriver
+  webdriver-manager update
 
   type bower || { echo "I expected bower to be available. Aborting."; exit 1; }
 
   # Install SASS
   sudo gem install sass
+
+  # Install mailcatcher
+  sudo gem install mailcatcher
+
