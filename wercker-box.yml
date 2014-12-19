@@ -1,5 +1,5 @@
 name: rembo-java7
-version: 0.0.10
+version: 0.0.11
 description: |
   Java7 box provisioned with the Oracle distribution via the webupd8team ppa. Provides support for
   running and testing Scala + Angular applications including. Includes Mailcatcher for mail sending
@@ -66,3 +66,5 @@ script: |-
   # Install mailcatcher
   sudo gem install mailcatcher
 
+  # Install Chromium browser
+  sudo apt-get install chromium-browser
